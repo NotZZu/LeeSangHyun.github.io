@@ -14,6 +14,7 @@ export default function Portfolio() {
   const [portfolioData, setPortfolioData] = useState({
     name: "이상현",
     shortBio: "Unity 기반 게임 개발자로, 시스템 설계부터 최적화까지 전 과정을 경험하며 사용자 경험 개선에 집중합니다.",
+    profileImage: "/images/profile.jpg",
     contact: {
       phone: "010-6362-4696",
       email: "shlee21016@gmail.com",
@@ -163,20 +164,33 @@ export default function Portfolio() {
         {/* Resume Section - Page 1 */}
         <div className="print:break-after-page space-y-3">
           <div className="flex items-start justify-between gap-8 border-b border-border pb-2">
-            <div className="space-y-1">
-              <EditableSection
-                isEditing={isEditing}
-                value={portfolioData.name}
-                onChange={(value) => updateField(["name"], value)}
-                className="text-3xl font-bold text-foreground"
-              />
-              <EditableSection
-                isEditing={isEditing}
-                value={portfolioData.shortBio}
-                onChange={(value) => updateField(["shortBio"], value)}
-                multiline
-                className="max-w-2xl text-sm text-muted-foreground"
-              />
+            <div className="flex items-center gap-6">
+              {portfolioData.profileImage && (
+                <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-lg border border-border">
+                  <Image
+                    src={portfolioData.profileImage || "/placeholder.svg"}
+                    alt="Profile"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              )}
+              <div className="space-y-1">
+                <EditableSection
+                  isEditing={isEditing}
+                  value={portfolioData.name}
+                  onChange={(value) => updateField(["name"], value)}
+                  className="text-3xl font-bold text-foreground"
+                />
+                <EditableSection
+                  isEditing={isEditing}
+                  value={portfolioData.shortBio}
+                  onChange={(value) => updateField(["shortBio"], value)}
+                  multiline
+                  className="max-w-2xl text-sm text-muted-foreground"
+                />
+              </div>
             </div>
 
             <div className="shrink-0 space-y-0.5 text-right text-xs text-muted-foreground">
